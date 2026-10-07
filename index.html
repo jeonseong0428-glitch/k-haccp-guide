@@ -34,7 +34,11 @@ kbd{font-family:inherit;font-size:.92em;font-weight:700;color:var(--ink);backgro
 .head-row{display:flex;align-items:center;justify-content:space-between;gap:16px;height:var(--head-h);padding-inline:20px;max-width:1100px;margin:0 auto}
 .logo{font-family:"Geist","Noto Sans KR",sans-serif;font-weight:700;font-size:21px;letter-spacing:-.03em;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:9px}
 .logo i{width:10px;height:10px;border-radius:50%;background:var(--accent)}
-.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:10px 20px;height:var(--tabs-h);max-width:1100px;margin:0 auto}
+.tabs-wrap{display:flex;align-items:center;gap:6px;max-width:1100px;margin:0 auto;padding:0 12px;height:var(--tabs-h)}
+.tabs{flex:1;min-width:0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:10px 2px;scroll-behavior:smooth}
+.tarr{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:opacity .15s,background .15s}
+.tarr:hover{background:var(--s2)}
+.tarr:disabled{opacity:.3;cursor:default}
 .tabs::-webkit-scrollbar{display:none}
 .tab{flex:none;font:inherit;font-size:14.5px;font-weight:600;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:8px;transition:background .15s,color .15s,border-color .15s}
 .tab b{font-family:"Geist",sans-serif;font-weight:600;font-size:12px;color:var(--line2)}
@@ -156,7 +160,7 @@ body:not(.home) .foot{display:none}
 @media (prefers-reduced-motion:reduce){.slides{scroll-behavior:auto}*{transition:none!important}}
 </style>
 <header class="head"><div class="head-row"><a class="logo" href="#" id="homeTab" aria-label="처음 화면"><i></i>K-HACCP 가이드</a><a class="btn btn-primary btn-sm" href="http://pf.kakao.com/_Qxisgxj/chat" target="_blank" rel="noopener">카카오 문의</a></div>
-<div class="tabs" role="tablist" aria-label="상황별 가이드"><button type="button" class="tab" role="tab" aria-selected="false" id="tab-start"><b>01</b>처음 설정해요</button><button type="button" class="tab" role="tab" aria-selected="false" id="tab-morning"><b>02</b>아침에 출근했어요</button><button type="button" class="tab" role="tab" aria-selected="false" id="tab-inbound"><b>03</b>원료가 들어왔어요</button><button type="button" class="tab" role="tab" aria-selected="false" id="tab-produce"><b>04</b>오늘 생산해요</button><button type="button" class="tab" role="tab" aria-selected="false" id="tab-ship"><b>05</b>출고·재고 정리해요</button><button type="button" class="tab" role="tab" aria-selected="false" id="tab-approve"><b>06</b>결재해야 해요</button><button type="button" class="tab" role="tab" aria-selected="false" id="tab-weekly"><b>07</b>주간·월간·교육</button><button type="button" class="tab" role="tab" aria-selected="false" id="tab-expiry"><b>08</b>만료일 놓치면 안 돼요</button><button type="button" class="tab" role="tab" aria-selected="false" id="tab-audit"><b>09</b>심사·감사 준비해요</button><button type="button" class="tab" role="tab" aria-selected="false"><b>10</b>자주 묻는 질문</button><button type="button" class="tab" role="tab" aria-selected="false"><b>11</b>영상</button></div></header>
+<div class="tabs-wrap"><button type="button" class="tarr" id="tabL" aria-label="메뉴 왼쪽으로"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><div class="tabs" id="tabsRow" role="tablist" aria-label="상황별 가이드"><button type="button" class="tab" role="tab" aria-selected="false" id="tab-start"><b>01</b>처음 설정해요</button><button type="button" class="tab" role="tab" aria-selected="false" id="tab-morning"><b>02</b>아침에 출근했어요</button><button type="button" class="tab" role="tab" aria-selected="false" id="tab-inbound"><b>03</b>원료가 들어왔어요</button><button type="button" class="tab" role="tab" aria-selected="false" id="tab-produce"><b>04</b>오늘 생산해요</button><button type="button" class="tab" role="tab" aria-selected="false" id="tab-ship"><b>05</b>출고·재고 정리해요</button><button type="button" class="tab" role="tab" aria-selected="false" id="tab-approve"><b>06</b>결재해야 해요</button><button type="button" class="tab" role="tab" aria-selected="false" id="tab-weekly"><b>07</b>주간·월간·교육</button><button type="button" class="tab" role="tab" aria-selected="false" id="tab-expiry"><b>08</b>만료일 놓치면 안 돼요</button><button type="button" class="tab" role="tab" aria-selected="false" id="tab-audit"><b>09</b>심사·감사 준비해요</button><button type="button" class="tab" role="tab" aria-selected="false"><b>10</b>자주 묻는 질문</button><button type="button" class="tab" role="tab" aria-selected="false"><b>11</b>영상</button></div><button type="button" class="tarr" id="tabR" aria-label="메뉴 오른쪽으로"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div></header>
 <main class="cover" id="top"><div class="cover-in">
   <div class="cover-top"><div class="cover-txt">
   <h1>따라 하면<br><span class="a">됩니다.</span></h1>
@@ -251,6 +255,11 @@ body:not(.home) .foot{display:none}
     history.replaceState(null,'','#'+items[i].id); }
   function goHome(){ body.classList.add('home'); cur=-1; tabs.forEach(function(t){t.setAttribute('aria-selected','false')}); history.replaceState(null,'',location.pathname); window.scrollTo(0,0); }
   tabs.forEach(function(t,k){ t.addEventListener('click',function(){ go(k); }); });
+  (function(){ var row=document.getElementById('tabsRow'), L=document.getElementById('tabL'), R=document.getElementById('tabR');
+    function upd(){ var max=row.scrollWidth-row.clientWidth-2; L.disabled=row.scrollLeft<=2; R.disabled=row.scrollLeft>=max; }
+    function mv(d){ row.scrollBy({left:d*Math.max(160,row.clientWidth*0.7),behavior:'smooth'}); }
+    L.addEventListener('click',function(){mv(-1)}); R.addEventListener('click',function(){mv(1)});
+    row.addEventListener('scroll',upd,{passive:true}); window.addEventListener('resize',upd); upd(); setTimeout(upd,300); })();
   tiles.forEach(function(t){ t.addEventListener('click',function(){ go(items.indexOf(document.getElementById(t.getAttribute('data-go')))); }); });
   prev.addEventListener('click',function(){ go(cur-1); }); next.addEventListener('click',function(){ go(cur+1); });
   home.addEventListener('click',function(e){ e.preventDefault(); goHome(); });
