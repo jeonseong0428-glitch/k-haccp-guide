@@ -4,7 +4,70 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="K-HACCP 사용 가이드 — 화면구성, 기초등록, 하루 업무 따라하기, 일지 작성, 전자결재, 매뉴얼 영상, FAQ">
-<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* calm pass */
+.sec-head .bn{font-size:clamp(1.6rem,3vw,2.2rem);-webkit-text-stroke:0;color:var(--accent);font-weight:700;letter-spacing:-.02em;line-height:1}
+.sec-head .kicker{font-family:"Malgun Gothic","맑은 고딕","Noto Sans KR",sans-serif;letter-spacing:0;text-transform:none;font-size:14.5px;color:var(--muted);margin:10px 0 6px}
+.sec-head h2{font-size:clamp(1.7rem,3.4vw,2.6rem)}
+.sec-head{gap:28px;margin-bottom:32px}
+.sec-photo{max-width:220px;justify-self:end}
+.hero-meta span::before{content:none}
+.hero-meta{font-size:15px}
+.progress{display:none}
+.nav{justify-content:flex-end;gap:6px}
+.nav a{font-size:15.5px;padding:8px 14px}
+.toc a{font-size:15px}
+.gsec+.gsec{padding-top:64px}
+.gsec{padding-bottom:96px}
+.ck,.tl-card,.box,.exp,.vcard,.faq details,.panel,.tab-card,.subtools,.mock{border-color:var(--line)}
+.crumb span{font-size:13.5px;padding:2px 9px}
+@media (max-width:760px){.sec-photo{max-width:100%;aspect-ratio:16/9;max-height:160px}}
+
+/* inline video */
+.vcard.vid{padding:0;overflow:hidden}
+.vcard.vid .vcat,.vcard.vid .vname{padding-inline:18px}
+.vcard.vid .vcat{padding-top:14px}
+.vcard.vid .vgo{padding:4px 18px 16px;text-decoration:none;color:var(--muted);font-size:14px}
+.vcard.vid .vgo:hover{color:var(--accent)}
+.vthumb{display:block;width:100%;aspect-ratio:16/9;border:0;padding:0;cursor:pointer;background:#111 center/cover no-repeat;position:relative}
+.vplay{position:absolute;left:50%;top:50%;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%;background:rgba(10,10,10,.82);transition:transform .2s,background .2s}
+.vplay::after{content:"";position:absolute;left:22px;top:17px;border-left:18px solid #fff;border-top:12px solid transparent;border-bottom:12px solid transparent}
+.vthumb:hover .vplay{transform:scale(1.08);background:var(--accent)}
+.vframe{display:block;width:100%;aspect-ratio:16/9;border:0;background:#000}
+
+
+/* step deck (one card at a time) */
+.deck{position:relative}
+.deck-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.deck-count{font-family:"Geist","Malgun Gothic",sans-serif;font-size:15px;font-weight:600;color:var(--muted);font-feature-settings:"tnum"}
+.deck-count b{color:var(--ink);font-size:22px;margin-right:4px}
+.deck-dots{display:flex;gap:6px;flex-wrap:wrap}
+.deck-dots button{width:10px;height:10px;border-radius:50%;border:0;padding:0;background:var(--line-strong);cursor:pointer;transition:transform .2s,background .2s}
+.deck-dots button[aria-current="true"]{background:var(--accent);transform:scale(1.3)}
+.deck-dots button.done{background:var(--ink)}
+.deck-ctl{display:flex;gap:8px;align-items:center}
+.deck-ctl button{font:inherit;font-size:15px;font-weight:700;border-radius:999px;padding:10px 18px;cursor:pointer;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);transition:background .15s,transform .15s}
+.deck-ctl button.next{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.deck-ctl button:hover{transform:translateY(-1px)}
+.deck-ctl button:disabled{opacity:.35;cursor:default;transform:none}
+.deck-ctl .all{font-size:14px;padding:9px 14px;color:var(--muted)}
+.deck-stage{position:relative;overflow:hidden}
+.deck-stage > *{display:none}
+.deck-stage > .is-on{display:grid;animation:slidein .35s cubic-bezier(.2,.7,.2,1)}
+.deck.show-all .deck-stage > *{display:grid}
+.deck.show-all .deck-stage{display:grid;gap:12px}
+.deck.show-all .deck-ctl .prev,.deck.show-all .deck-ctl .next,.deck.show-all .deck-dots{display:none}
+.deck .tl::before{display:none}
+.deck .tl-item{grid-template-columns:minmax(0,1fr);padding-bottom:0}
+.deck .tl-num{display:none}
+.deck .tl-card{padding:30px 32px;gap:16px}
+.deck .ck{padding:30px 32px;gap:20px}
+.deck .exp,.deck .box{padding:30px 32px}
+.deck .ck-top h4,.deck .tl-card h4,.deck .box h4,.deck .exp h4{font-size:1.5rem}
+.deck-step{font-family:"Geist",sans-serif;font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+@keyframes slidein{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+@media (max-width:760px){.deck .tl-card,.deck .ck,.deck .exp,.deck .box{padding:20px}.deck-ctl button{padding:9px 14px}}
+</style>
 <title>K-HACCP 사용가이드</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -436,12 +499,8 @@ a.vcard:hover .vgo{color:var(--accent)}
   <div class="wrap head-row">
     <a class="logo" href="#top" aria-label="K-HACCP 처음으로"><span class="logo-mark" aria-hidden="true"></span>K-HACCP</a>
     <nav class="nav" aria-label="주요 메뉴">
-      <a href="#screen">화면구성</a>
-      <a href="#start">시작하기</a>
-      <a href="#daily">하루 업무</a>
-      <a href="#cycle">일지 작성</a>
-      <a href="#approval">전자결재</a>
-      <a href="#videos">영상</a>
+      <a href="#start">사용 가이드</a>
+      <a href="#videos">매뉴얼 영상</a>
       <a href="#faq">FAQ</a>
     </nav>
     <a class="btn btn-primary btn-sm" href="http://pf.kakao.com/_Qxisgxj/chat" target="_blank" rel="noopener">카카오 문의</a>
@@ -456,24 +515,16 @@ a.vcard:hover .vgo{color:var(--accent)}
   <div class="hero-in">
     <p class="label">K-HACCP 사용 가이드</p>
     <h1 id="hero-title">따라 하면<br><span class="accent">됩니다.</span></h1>
-    <p class="hero-sub">처음 설정부터 매일 쓰는 순서까지. K-HACCP 노션 사용자가이드를 메뉴 경로와 누를 버튼 중심으로 다시 정리했습니다. 모든 메뉴 화면에는 <kbd>메뉴얼 영상</kbd> 버튼이 있으니, 막히면 그 화면의 영상을 먼저 보세요.</p>
+    <p class="hero-sub">처음 설정부터 매일 쓰는 순서까지, 메뉴 경로와 누를 버튼만 따라가면 됩니다.</p>
     <div class="hero-cta">
         <a class="btn btn-primary btn-lg" href="#start">시작하기</a>
         <a class="btn btn-ghost btn-lg" href="#videos">매뉴얼 영상 보기</a>
       </div>
-    <div class="hero-meta">
-        <span><a href="http://k-haccp.btsi.co.kr/haccp.do" target="_blank" rel="noopener">K-HACCP 로그인</a> — 로그인하면 해썹캘린더 피드가 첫 화면으로 열립니다.</span>
-        <span>로그인 화면에 공지·결제 안내 팝업이 뜰 수 있습니다. 확인 후 닫으세요.</span>
-        <span>궁금한 점은 <a href="http://pf.kakao.com/_Qxisgxj/chat" target="_blank" rel="noopener">카카오 1:1 상담</a></span>
-      </div>
+    <div class="hero-meta"><span><a href="http://k-haccp.btsi.co.kr/haccp.do" target="_blank" rel="noopener">K-HACCP 로그인</a> · 궁금한 점은 <a href="http://pf.kakao.com/_Qxisgxj/chat" target="_blank" rel="noopener">카카오 1:1 상담</a></span></div>
   </div>
   <div class="hero-photo ph" style="--ph:url('pop_hero.png');--pos:center" role="img" aria-label="해썹캘린더 앱 화면 일러스트"></div>
   </div>
 </section>
-<div class="ticker" aria-hidden="true"><div class="ticker-track">
-  <span><b>해썹캘린더 피드</b></span><span>기초등록</span><span><b>하루 업무 따라하기</b></span><span>주기별 일지</span><span><b>만료일 관리</b></span><span>전자결재</span><span><b>모바일 앱 알림</b></span><span>매뉴얼 영상 31개</span><span><b>FAQ</b></span>
-  <span><b>해썹캘린더 피드</b></span><span>기초등록</span><span><b>하루 업무 따라하기</b></span><span>주기별 일지</span><span><b>만료일 관리</b></span><span>전자결재</span><span><b>모바일 앱 알림</b></span><span>매뉴얼 영상 31개</span><span><b>FAQ</b></span>
-</div></div>
 
 <!-- ================= GUIDE ZONE ================= -->
 <div class="guide-zone">
@@ -502,7 +553,7 @@ a.vcard:hover .vgo{color:var(--accent)}
   <header class="sec-head">
     <div class="band-card">
       <span class="bn" aria-hidden="true">01</span>
-      <div class="bt"><p class="kicker"><span>Screen</span><span class="ko">화면구성 · 해썹캘린더 피드</span></p>
+      <div class="bt"><p class="kicker">화면구성 · 해썹캘린더 피드</p>
     <h2 id="screen-title">로그인하면 오늘 할 일이 달력에 펼쳐집니다</h2></div>
     </div>
     <div class="sec-photo ph" style="--ph:url('pop_01.png');--pos:center" aria-hidden="true"></div>
@@ -606,7 +657,7 @@ a.vcard:hover .vgo{color:var(--accent)}
   <header class="sec-head">
     <div class="band-card">
       <span class="bn" aria-hidden="true">02</span>
-      <div class="bt"><p class="kicker"><span>Set up</span><span class="ko">시작하기 · 기초등록</span></p>
+      <div class="bt"><p class="kicker">시작하기 · 기초등록</p>
     <h2 id="start-title">처음 사용할 때 이것부터 확인하세요</h2></div>
     </div>
     <div class="sec-photo ph" style="--ph:url('pop_02.png');--pos:center" aria-hidden="true"></div>
@@ -712,7 +763,7 @@ a.vcard:hover .vgo{color:var(--accent)}
   <header class="sec-head">
     <div class="band-card">
       <span class="bn" aria-hidden="true">03</span>
-      <div class="bt"><p class="kicker"><span>Daily routine</span><span class="ko">하루 업무 따라하기</span></p>
+      <div class="bt"><p class="kicker">하루 업무 따라하기</p>
     <h2 id="daily-title">제품 생산하는 날,<br>이 순서대로 하세요</h2></div>
     </div>
     <div class="sec-photo ph" style="--ph:url('pop_03.png');--pos:center" aria-hidden="true"></div>
@@ -839,7 +890,7 @@ a.vcard:hover .vgo{color:var(--accent)}
   <header class="sec-head">
     <div class="band-card">
       <span class="bn" aria-hidden="true">04</span>
-      <div class="bt"><p class="kicker"><span>Records</span><span class="ko">주기별 일지</span></p>
+      <div class="bt"><p class="kicker">주기별 일지</p>
     <h2 id="cycle-title">일일 · 주간 · 월간 · 연간 일지 쓰는 법</h2></div>
     </div>
     <div class="sec-photo ph" style="--ph:url('pop_04.png');--pos:center" aria-hidden="true"></div>
@@ -894,7 +945,7 @@ a.vcard:hover .vgo{color:var(--accent)}
   <header class="sec-head">
     <div class="band-card">
       <span class="bn" aria-hidden="true">05</span>
-      <div class="bt"><p class="kicker"><span>Expiry</span><span class="ko">만료일 관리 4종</span></p>
+      <div class="bt"><p class="kicker">만료일 관리 4종</p>
     <h2 id="exp-title">갱신 시기를 놓치지 않게,<br>남은 기간을 보여 드립니다</h2></div>
     </div>
     <div class="sec-photo ph" style="--ph:url('pop_05.png');--pos:center" aria-hidden="true"></div>
@@ -944,7 +995,7 @@ a.vcard:hover .vgo{color:var(--accent)}
   <header class="sec-head">
     <div class="band-card">
       <span class="bn" aria-hidden="true">06</span>
-      <div class="bt"><p class="kicker"><span>Approval</span><span class="ko">전자결재</span></p>
+      <div class="bt"><p class="kicker">전자결재</p>
     <h2 id="appr-title">작성부터 승인까지,<br>화면에서 끝냅니다</h2></div>
     </div>
     <div class="sec-photo ph" style="--ph:url('pop_06.png');--pos:center" aria-hidden="true"></div>
@@ -994,7 +1045,7 @@ a.vcard:hover .vgo{color:var(--accent)}
   <header class="sec-head">
     <div class="band-card">
       <span class="bn" aria-hidden="true">07</span>
-      <div class="bt"><p class="kicker"><span>Mobile</span><span class="ko">모바일 앱</span></p>
+      <div class="bt"><p class="kicker">모바일 앱</p>
     <h2 id="mob-title">현장에서는 휴대폰으로</h2></div>
     </div>
     <div class="sec-photo ph" style="--ph:url('pop_07.png');--pos:center" aria-hidden="true"></div>
@@ -1025,12 +1076,12 @@ a.vcard:hover .vgo{color:var(--accent)}
   <header class="sec-head">
     <div class="band-card">
       <span class="bn" aria-hidden="true">08</span>
-      <div class="bt"><p class="kicker"><span>Videos</span><span class="ko">매뉴얼 영상</span></p>
+      <div class="bt"><p class="kicker">매뉴얼 영상</p>
     <h2 id="vid-title">메뉴별 매뉴얼 영상</h2></div>
     </div>
     <div class="sec-photo ph" style="--ph:url('pop_08.png');--pos:center" aria-hidden="true"></div>
   </header>
-  <p class="sec-sub">각 화면의 <kbd>메뉴얼 영상</kbd> 버튼과 같은 영상입니다. 영상은 유튜브 새 탭에서 열립니다.</p>
+  <p class="sec-sub">각 화면의 <kbd>메뉴얼 영상</kbd> 버튼과 같은 영상입니다. 썸네일을 누르면 여기서 바로 재생됩니다.</p>
 
   <div class="vtools">
     <label class="search"><span class="sr">메뉴 이름으로 영상 찾기</span><input id="vq" type="search" placeholder="메뉴 이름 검색 (예: 입고)" autocomplete="off"></label>
@@ -1045,37 +1096,37 @@ a.vcard:hover .vgo{color:var(--accent)}
   <p class="vcount" id="vcount" aria-live="polite">영상 31개</p>
 
   <div class="vgrid" id="vgrid">
-    <a class="vcard" data-cat="화면구성" href="https://youtu.be/ib6jvXMrjtQ" target="_blank" rel="noopener"><span class="vcat">화면구성</span><span class="vname">해썹캘린더 피드 — 주기별점검일지</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="화면구성" href="https://youtu.be/AI7KuWCsVHY" target="_blank" rel="noopener"><span class="vcat">화면구성</span><span class="vname">해썹캘린더 피드 — 기타선행일지</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="화면구성" href="https://youtu.be/8t3vHbhS1pA" target="_blank" rel="noopener"><span class="vcat">화면구성</span><span class="vname">해썹캘린더 피드 — CCP실적/수불</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="기초등록" href="https://youtu.be/JfghTsN91Xs" target="_blank" rel="noopener"><span class="vcat">기초등록</span><span class="vname">회사정보 등록</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="기초등록" href="https://youtu.be/ivATwv5cQ9I" target="_blank" rel="noopener"><span class="vcat">기초등록</span><span class="vname">사용자 관리</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="기초등록" href="https://youtu.be/b6qXbrhvUcI" target="_blank" rel="noopener"><span class="vcat">기초등록</span><span class="vname">결재선 관리</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="기초등록" href="https://youtu.be/SWWoztMsWy4" target="_blank" rel="noopener"><span class="vcat">기초등록</span><span class="vname">일지별 알림 관리</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="기초등록" href="https://youtu.be/-dC-msbTQkc" target="_blank" rel="noopener"><span class="vcat">기초등록</span><span class="vname">생산품목 관리</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="기초등록" href="https://youtu.be/UTV0W3_7kas" target="_blank" rel="noopener"><span class="vcat">기초등록</span><span class="vname">원재료 관리</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="기초등록" href="https://youtu.be/pqv_vCNns-4" target="_blank" rel="noopener"><span class="vcat">기초등록</span><span class="vname">거래처 관리</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="선행요건 일지" href="https://youtu.be/9_FzwdsNGlA" target="_blank" rel="noopener"><span class="vcat">선행요건 일지</span><span class="vname">일일일지</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="선행요건 일지" href="https://youtu.be/0m8xSn7YvnU" target="_blank" rel="noopener"><span class="vcat">선행요건 일지</span><span class="vname">주간일지</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="선행요건 일지" href="https://youtu.be/uB_i8s6-aEw" target="_blank" rel="noopener"><span class="vcat">선행요건 일지</span><span class="vname">월간일지</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="선행요건 일지" href="https://youtu.be/bjIoaGb6KH0" target="_blank" rel="noopener"><span class="vcat">선행요건 일지</span><span class="vname">CCP모니터링 일지관리</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="선행요건 일지" href="https://youtu.be/Y0nkUXI9850" target="_blank" rel="noopener"><span class="vcat">선행요건 일지</span><span class="vname">교육훈련일지</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="선행요건 일지" href="https://youtu.be/dIYR8lUJ5wg" target="_blank" rel="noopener"><span class="vcat">선행요건 일지</span><span class="vname">육안검사일지</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="선행요건 일지" href="https://youtu.be/dGt_2Lo-zRI" target="_blank" rel="noopener"><span class="vcat">선행요건 일지</span><span class="vname">기타일지</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="선행요건 일지" href="https://youtu.be/PkvvpPaKGnc" target="_blank" rel="noopener"><span class="vcat">선행요건 일지</span><span class="vname">검교정일정</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="선행요건 일지" href="https://youtu.be/iOvJi-ev2uY" target="_blank" rel="noopener"><span class="vcat">선행요건 일지</span><span class="vname">유효성평가(미생물검사)</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="선행요건 일지" href="https://youtu.be/YXbjwvojxzM" target="_blank" rel="noopener"><span class="vcat">선행요건 일지</span><span class="vname">자가품질검사</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="선행요건 일지" href="https://youtu.be/fZbjHBSu8D4" target="_blank" rel="noopener"><span class="vcat">선행요건 일지</span><span class="vname">보건증</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="원료수불/생산" href="https://youtu.be/M1CH78df3mI" target="_blank" rel="noopener"><span class="vcat">원료수불/생산</span><span class="vname">원재료입고등록</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="원료수불/생산" href="https://youtu.be/gl5fD77-Vyg" target="_blank" rel="noopener"><span class="vcat">원료수불/생산</span><span class="vname">원료 수불대장</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="원료수불/생산" href="https://youtu.be/2nGFI0K-Sj0" target="_blank" rel="noopener"><span class="vcat">원료수불/생산</span><span class="vname">원재료사용등록</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="원료수불/생산" href="https://youtu.be/ymMJLW4AMmo" target="_blank" rel="noopener"><span class="vcat">원료수불/생산</span><span class="vname">작업제품선택</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="원료수불/생산" href="https://youtu.be/SIc_VEhp1z0" target="_blank" rel="noopener"><span class="vcat">원료수불/생산</span><span class="vname">생산실적(CCP관리)등록</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="원료수불/생산" href="https://youtu.be/bxvgpuY2CIQ" target="_blank" rel="noopener"><span class="vcat">원료수불/생산</span><span class="vname">생산일지</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="원료수불/생산" href="https://youtu.be/HhBi47Huejw" target="_blank" rel="noopener"><span class="vcat">원료수불/생산</span><span class="vname">제품 거래기록서</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="원료수불/생산" href="https://youtu.be/lq99ADeJkBU" target="_blank" rel="noopener"><span class="vcat">원료수불/생산</span><span class="vname">재고현황</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="원료수불/생산" href="https://youtu.be/qnhfcz9WI7s" target="_blank" rel="noopener"><span class="vcat">원료수불/생산</span><span class="vname">재고조정</span><span class="vgo">유튜브에서 보기 ↗</span></a>
-    <a class="vcard" data-cat="원료수불/생산" href="https://youtu.be/xQ1qBrqkuQo" target="_blank" rel="noopener"><span class="vcat">원료수불/생산</span><span class="vname">소비기한별 재고현황</span><span class="vgo">유튜브에서 보기 ↗</span></a>
+    <div class="vcard vid" data-cat="화면구성" data-id="ib6jvXMrjtQ"><button type="button" class="vthumb" aria-label="해썹캘린더 피드 — 주기별점검일지 영상 재생" style="background-image:url(https://i.ytimg.com/vi/ib6jvXMrjtQ/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">화면구성</span><span class="vname">해썹캘린더 피드 — 주기별점검일지</span><a class="vgo" href="https://youtu.be/ib6jvXMrjtQ" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="화면구성" data-id="AI7KuWCsVHY"><button type="button" class="vthumb" aria-label="해썹캘린더 피드 — 기타선행일지 영상 재생" style="background-image:url(https://i.ytimg.com/vi/AI7KuWCsVHY/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">화면구성</span><span class="vname">해썹캘린더 피드 — 기타선행일지</span><a class="vgo" href="https://youtu.be/AI7KuWCsVHY" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="화면구성" data-id="8t3vHbhS1pA"><button type="button" class="vthumb" aria-label="해썹캘린더 피드 — CCP실적/수불 영상 재생" style="background-image:url(https://i.ytimg.com/vi/8t3vHbhS1pA/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">화면구성</span><span class="vname">해썹캘린더 피드 — CCP실적/수불</span><a class="vgo" href="https://youtu.be/8t3vHbhS1pA" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="기초등록" data-id="JfghTsN91Xs"><button type="button" class="vthumb" aria-label="회사정보 등록 영상 재생" style="background-image:url(https://i.ytimg.com/vi/JfghTsN91Xs/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">기초등록</span><span class="vname">회사정보 등록</span><a class="vgo" href="https://youtu.be/JfghTsN91Xs" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="기초등록" data-id="ivATwv5cQ9I"><button type="button" class="vthumb" aria-label="사용자 관리 영상 재생" style="background-image:url(https://i.ytimg.com/vi/ivATwv5cQ9I/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">기초등록</span><span class="vname">사용자 관리</span><a class="vgo" href="https://youtu.be/ivATwv5cQ9I" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="기초등록" data-id="b6qXbrhvUcI"><button type="button" class="vthumb" aria-label="결재선 관리 영상 재생" style="background-image:url(https://i.ytimg.com/vi/b6qXbrhvUcI/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">기초등록</span><span class="vname">결재선 관리</span><a class="vgo" href="https://youtu.be/b6qXbrhvUcI" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="기초등록" data-id="SWWoztMsWy4"><button type="button" class="vthumb" aria-label="일지별 알림 관리 영상 재생" style="background-image:url(https://i.ytimg.com/vi/SWWoztMsWy4/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">기초등록</span><span class="vname">일지별 알림 관리</span><a class="vgo" href="https://youtu.be/SWWoztMsWy4" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="기초등록" data-id="-dC-msbTQkc"><button type="button" class="vthumb" aria-label="생산품목 관리 영상 재생" style="background-image:url(https://i.ytimg.com/vi/-dC-msbTQkc/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">기초등록</span><span class="vname">생산품목 관리</span><a class="vgo" href="https://youtu.be/-dC-msbTQkc" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="기초등록" data-id="UTV0W3_7kas"><button type="button" class="vthumb" aria-label="원재료 관리 영상 재생" style="background-image:url(https://i.ytimg.com/vi/UTV0W3_7kas/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">기초등록</span><span class="vname">원재료 관리</span><a class="vgo" href="https://youtu.be/UTV0W3_7kas" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="기초등록" data-id="pqv_vCNns-4"><button type="button" class="vthumb" aria-label="거래처 관리 영상 재생" style="background-image:url(https://i.ytimg.com/vi/pqv_vCNns-4/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">기초등록</span><span class="vname">거래처 관리</span><a class="vgo" href="https://youtu.be/pqv_vCNns-4" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="선행요건 일지" data-id="9_FzwdsNGlA"><button type="button" class="vthumb" aria-label="일일일지 영상 재생" style="background-image:url(https://i.ytimg.com/vi/9_FzwdsNGlA/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">선행요건 일지</span><span class="vname">일일일지</span><a class="vgo" href="https://youtu.be/9_FzwdsNGlA" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="선행요건 일지" data-id="0m8xSn7YvnU"><button type="button" class="vthumb" aria-label="주간일지 영상 재생" style="background-image:url(https://i.ytimg.com/vi/0m8xSn7YvnU/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">선행요건 일지</span><span class="vname">주간일지</span><a class="vgo" href="https://youtu.be/0m8xSn7YvnU" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="선행요건 일지" data-id="uB_i8s6-aEw"><button type="button" class="vthumb" aria-label="월간일지 영상 재생" style="background-image:url(https://i.ytimg.com/vi/uB_i8s6-aEw/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">선행요건 일지</span><span class="vname">월간일지</span><a class="vgo" href="https://youtu.be/uB_i8s6-aEw" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="선행요건 일지" data-id="bjIoaGb6KH0"><button type="button" class="vthumb" aria-label="CCP모니터링 일지관리 영상 재생" style="background-image:url(https://i.ytimg.com/vi/bjIoaGb6KH0/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">선행요건 일지</span><span class="vname">CCP모니터링 일지관리</span><a class="vgo" href="https://youtu.be/bjIoaGb6KH0" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="선행요건 일지" data-id="Y0nkUXI9850"><button type="button" class="vthumb" aria-label="교육훈련일지 영상 재생" style="background-image:url(https://i.ytimg.com/vi/Y0nkUXI9850/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">선행요건 일지</span><span class="vname">교육훈련일지</span><a class="vgo" href="https://youtu.be/Y0nkUXI9850" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="선행요건 일지" data-id="dIYR8lUJ5wg"><button type="button" class="vthumb" aria-label="육안검사일지 영상 재생" style="background-image:url(https://i.ytimg.com/vi/dIYR8lUJ5wg/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">선행요건 일지</span><span class="vname">육안검사일지</span><a class="vgo" href="https://youtu.be/dIYR8lUJ5wg" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="선행요건 일지" data-id="dGt_2Lo-zRI"><button type="button" class="vthumb" aria-label="기타일지 영상 재생" style="background-image:url(https://i.ytimg.com/vi/dGt_2Lo-zRI/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">선행요건 일지</span><span class="vname">기타일지</span><a class="vgo" href="https://youtu.be/dGt_2Lo-zRI" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="선행요건 일지" data-id="PkvvpPaKGnc"><button type="button" class="vthumb" aria-label="검교정일정 영상 재생" style="background-image:url(https://i.ytimg.com/vi/PkvvpPaKGnc/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">선행요건 일지</span><span class="vname">검교정일정</span><a class="vgo" href="https://youtu.be/PkvvpPaKGnc" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="선행요건 일지" data-id="iOvJi-ev2uY"><button type="button" class="vthumb" aria-label="유효성평가(미생물검사) 영상 재생" style="background-image:url(https://i.ytimg.com/vi/iOvJi-ev2uY/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">선행요건 일지</span><span class="vname">유효성평가(미생물검사)</span><a class="vgo" href="https://youtu.be/iOvJi-ev2uY" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="선행요건 일지" data-id="YXbjwvojxzM"><button type="button" class="vthumb" aria-label="자가품질검사 영상 재생" style="background-image:url(https://i.ytimg.com/vi/YXbjwvojxzM/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">선행요건 일지</span><span class="vname">자가품질검사</span><a class="vgo" href="https://youtu.be/YXbjwvojxzM" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="선행요건 일지" data-id="fZbjHBSu8D4"><button type="button" class="vthumb" aria-label="보건증 영상 재생" style="background-image:url(https://i.ytimg.com/vi/fZbjHBSu8D4/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">선행요건 일지</span><span class="vname">보건증</span><a class="vgo" href="https://youtu.be/fZbjHBSu8D4" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="원료수불/생산" data-id="M1CH78df3mI"><button type="button" class="vthumb" aria-label="원재료입고등록 영상 재생" style="background-image:url(https://i.ytimg.com/vi/M1CH78df3mI/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">원료수불/생산</span><span class="vname">원재료입고등록</span><a class="vgo" href="https://youtu.be/M1CH78df3mI" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="원료수불/생산" data-id="gl5fD77-Vyg"><button type="button" class="vthumb" aria-label="원료 수불대장 영상 재생" style="background-image:url(https://i.ytimg.com/vi/gl5fD77-Vyg/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">원료수불/생산</span><span class="vname">원료 수불대장</span><a class="vgo" href="https://youtu.be/gl5fD77-Vyg" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="원료수불/생산" data-id="2nGFI0K-Sj0"><button type="button" class="vthumb" aria-label="원재료사용등록 영상 재생" style="background-image:url(https://i.ytimg.com/vi/2nGFI0K-Sj0/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">원료수불/생산</span><span class="vname">원재료사용등록</span><a class="vgo" href="https://youtu.be/2nGFI0K-Sj0" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="원료수불/생산" data-id="ymMJLW4AMmo"><button type="button" class="vthumb" aria-label="작업제품선택 영상 재생" style="background-image:url(https://i.ytimg.com/vi/ymMJLW4AMmo/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">원료수불/생산</span><span class="vname">작업제품선택</span><a class="vgo" href="https://youtu.be/ymMJLW4AMmo" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="원료수불/생산" data-id="SIc_VEhp1z0"><button type="button" class="vthumb" aria-label="생산실적(CCP관리)등록 영상 재생" style="background-image:url(https://i.ytimg.com/vi/SIc_VEhp1z0/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">원료수불/생산</span><span class="vname">생산실적(CCP관리)등록</span><a class="vgo" href="https://youtu.be/SIc_VEhp1z0" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="원료수불/생산" data-id="bxvgpuY2CIQ"><button type="button" class="vthumb" aria-label="생산일지 영상 재생" style="background-image:url(https://i.ytimg.com/vi/bxvgpuY2CIQ/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">원료수불/생산</span><span class="vname">생산일지</span><a class="vgo" href="https://youtu.be/bxvgpuY2CIQ" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="원료수불/생산" data-id="HhBi47Huejw"><button type="button" class="vthumb" aria-label="제품 거래기록서 영상 재생" style="background-image:url(https://i.ytimg.com/vi/HhBi47Huejw/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">원료수불/생산</span><span class="vname">제품 거래기록서</span><a class="vgo" href="https://youtu.be/HhBi47Huejw" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="원료수불/생산" data-id="lq99ADeJkBU"><button type="button" class="vthumb" aria-label="재고현황 영상 재생" style="background-image:url(https://i.ytimg.com/vi/lq99ADeJkBU/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">원료수불/생산</span><span class="vname">재고현황</span><a class="vgo" href="https://youtu.be/lq99ADeJkBU" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="원료수불/생산" data-id="qnhfcz9WI7s"><button type="button" class="vthumb" aria-label="재고조정 영상 재생" style="background-image:url(https://i.ytimg.com/vi/qnhfcz9WI7s/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">원료수불/생산</span><span class="vname">재고조정</span><a class="vgo" href="https://youtu.be/qnhfcz9WI7s" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
+    <div class="vcard vid" data-cat="원료수불/생산" data-id="xQ1qBrqkuQo"><button type="button" class="vthumb" aria-label="소비기한별 재고현황 영상 재생" style="background-image:url(https://i.ytimg.com/vi/xQ1qBrqkuQo/hqdefault.jpg)"><span class="vplay" aria-hidden="true"></span></button><span class="vcat">원료수불/생산</span><span class="vname">소비기한별 재고현황</span><a class="vgo" href="https://youtu.be/xQ1qBrqkuQo" target="_blank" rel="noopener">유튜브에서 열기 ↗</a></div>
     <div class="vcard na" data-cat="선행요건 일지"><span class="vcat">선행요건 일지</span><span class="vname">연간일지</span><span class="vgo">준비 중</span></div>
     <div class="vcard na" data-cat="기초등록"><span class="vcat">기초등록</span><span class="vname">설정 관리</span><span class="vgo">준비 중</span></div>
     <div class="vcard na" data-cat="기초등록"><span class="vcat">기초등록</span><span class="vname">교육훈련일지 참석자 관리</span><span class="vgo">준비 중</span></div>
@@ -1090,7 +1141,7 @@ a.vcard:hover .vgo{color:var(--accent)}
   <header class="sec-head">
     <div class="band-card">
       <span class="bn" aria-hidden="true">09</span>
-      <div class="bt"><p class="kicker"><span>FAQ</span><span class="ko">FAQ</span></p>
+      <div class="bt"><p class="kicker">FAQ</p>
     <h2 id="faq-title">자주 묻는 질문</h2></div>
     </div>
     <div class="sec-photo ph" style="--ph:url('pop_09.png');--pos:center" aria-hidden="true"></div>
@@ -1176,13 +1227,57 @@ a.vcard:hover .vgo{color:var(--accent)}
   function norm(s){return (s||'').toLowerCase().replace(/\s+/g,'')}
   function filt(){var k=norm(q.value), shown=0, links=0;
     cards.forEach(function(c){var ok=(!cat||c.getAttribute('data-cat')===cat)&&(!k||norm(c.textContent).indexOf(k)>-1);
-      c.style.display=ok?'':'none'; if(ok){shown++; if(c.tagName==='A')links++;}});
+      c.style.display=ok?'':'none'; if(ok){shown++; if(c.getAttribute('data-id'))links++;}});
     cnt.textContent=(k||cat)?('찾은 영상 '+links+'개'+(shown>links?' · 준비 중 '+(shown-links)+'개':'')):'영상 31개 · 준비 중 4개';
     empty.style.display=shown?'none':'block';}
   q.addEventListener('input',filt);
   btns.forEach(function(x){x.addEventListener('click',function(){cat=x.getAttribute('data-cat');
     btns.forEach(function(y){y.setAttribute('aria-pressed',y===x?'true':'false')}); filt();});});
   filt();
+
+  /* inline youtube play */
+  document.querySelectorAll('.vthumb').forEach(function(b){b.addEventListener('click',function(){
+    var card=b.closest('.vid'), id=card.getAttribute('data-id'); var f=document.createElement('iframe');
+    f.className='vframe'; f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0'; f.title=card.querySelector('.vname').textContent;
+    f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'; f.setAttribute('allowfullscreen','');
+    b.replaceWith(f);});});
+
+
+
+  /* step deck: one card at a time */
+  function deck(container,label){
+    if(!container) return;
+    var items=[].slice.call(container.children); if(items.length<2) return;
+    var wrap=document.createElement('div'); wrap.className='deck';
+    container.parentNode.insertBefore(wrap,container);
+    var bar=document.createElement('div'); bar.className='deck-bar';
+    var count=document.createElement('div'); count.className='deck-count';
+    var dots=document.createElement('div'); dots.className='deck-dots'; dots.setAttribute('role','tablist');
+    var ctl=document.createElement('div'); ctl.className='deck-ctl';
+    var prev=document.createElement('button'); prev.type='button'; prev.className='prev'; prev.textContent='← 이전';
+    var next=document.createElement('button'); next.type='button'; next.className='next'; next.textContent='다음 →';
+    var all=document.createElement('button'); all.type='button'; all.className='all'; all.textContent='전체 보기';
+    ctl.appendChild(prev); ctl.appendChild(next); ctl.appendChild(all);
+    bar.appendChild(count); bar.appendChild(dots); bar.appendChild(ctl);
+    wrap.appendChild(bar); container.classList.add('deck-stage'); wrap.appendChild(container);
+    var i=0, n=items.length;
+    items.forEach(function(it,k){ var d=document.createElement('button'); d.type='button'; d.setAttribute('aria-label',label+' '+(k+1)); d.addEventListener('click',function(){go(k)}); dots.appendChild(d); });
+    function go(k){ i=Math.max(0,Math.min(n-1,k));
+      items.forEach(function(it,j){ it.classList.toggle('is-on',j===i); });
+      [].forEach.call(dots.children,function(d,j){ d.setAttribute('aria-current',j===i?'true':'false'); d.classList.toggle('done',j<i); });
+      count.innerHTML='<b>'+(i+1)+'</b>/ '+n+' '+label; prev.disabled=i===0; next.disabled=i===n-1; }
+    prev.addEventListener('click',function(){go(i-1)}); next.addEventListener('click',function(){go(i+1)});
+    all.addEventListener('click',function(){ var on=wrap.classList.toggle('show-all'); all.textContent=on?'한 장씩 보기':'전체 보기'; if(!on) go(i); });
+    var sx=null; container.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});
+    container.addEventListener('touchend',function(e){ if(sx===null||wrap.classList.contains('show-all')) return; var dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>50) go(i+(dx<0?1:-1)); sx=null; },{passive:true});
+    wrap.addEventListener('keydown',function(e){ if(e.key==='ArrowRight') go(i+1); if(e.key==='ArrowLeft') go(i-1); });
+    go(0);
+  }
+  deck(document.querySelector('#start .checklist'),'단계');
+  deck(document.querySelector('#daily .tl'),'단계');
+  deck(document.querySelector('#cycle .stack'),'일지');
+  deck(document.querySelector('#expiry .exp-grid'),'항목');
+  deck(document.querySelector('#approval .stack'),'단계');
 
   /* scroll progress + header line */
   var pb=document.getElementById('progress'), sh=document.getElementById('siteHead');
